@@ -1,0 +1,128 @@
+[
+  {
+    "id": "STN-001",
+    "title": "Dinh thự bên khoảng xanh",
+    "category": "Biệt Thự/Liền Kề",
+    "street": "Đặng Hữu Phổ",
+    "ward": "Phường An Khánh",
+    "city": "TP. Hồ Chí Minh",
+    "area": "650",
+    "frontage": "20",
+    "price": "Nhỉnh 15x tỷ",
+    "image": "/assets/hero.jpg",
+    "created_at": "2026-11-01T00:00:00.000Z",
+    "demo": true,
+    "images": [
+      "/assets/hero.jpg",
+      "/assets/interior.jpg",
+      "/assets/villa.jpg",
+      "/assets/townhouse.jpg"
+    ],
+    "description": "Một ý tưởng về không gian sống và sở hữu dành cho những nhu cầu khác biệt. Thông tin và hình ảnh trong hồ sơ này chỉ dùng để minh họa giao diện. Vui lòng liên hệ Sơn thẩm nhà để nhận danh sách bất động sản thực tế."
+  },
+  {
+    "id": "STN-002",
+    "title": "Dấu ấn giữa lòng phố",
+    "category": "Thổ Cư/Nhà Phố",
+    "street": "Nguyễn Huệ",
+    "ward": "Phường Sài Gòn",
+    "city": "TP. Hồ Chí Minh",
+    "area": "220",
+    "frontage": "8",
+    "price": "8x tỷ",
+    "image": "/assets/townhouse.jpg",
+    "created_at": "2026-11-02T00:00:00.000Z",
+    "demo": true,
+    "images": [
+      "/assets/townhouse.jpg",
+      "/assets/hero.jpg",
+      "/assets/interior.jpg",
+      "/assets/villa.jpg"
+    ],
+    "description": "Một ý tưởng về không gian sống và sở hữu dành cho những nhu cầu khác biệt. Thông tin và hình ảnh trong hồ sơ này chỉ dùng để minh họa giao diện. Vui lòng liên hệ Sơn thẩm nhà để nhận danh sách bất động sản thực tế."
+  },
+  {
+    "id": "STN-003",
+    "title": "Không gian của sự thịnh vượng",
+    "category": "Hotel/Motel",
+    "street": "Trần Phú",
+    "ward": "Phường Nha Trang",
+    "city": "Khánh Hòa",
+    "area": "1200",
+    "frontage": "28",
+    "price": "2xx tỷ",
+    "image": "/assets/hotel.jpg",
+    "created_at": "2026-11-03T00:00:00.000Z",
+    "demo": true,
+    "images": [
+      "/assets/hotel.jpg",
+      "/assets/hero.jpg",
+      "/assets/interior.jpg",
+      "/assets/villa.jpg"
+    ],
+    "description": "Một ý tưởng về không gian sống và sở hữu dành cho những nhu cầu khác biệt. Thông tin và hình ảnh trong hồ sơ này chỉ dùng để minh họa giao diện. Vui lòng liên hệ Sơn thẩm nhà để nhận danh sách bất động sản thực tế."
+  },
+  {
+    "id": "STN-004",
+    "title": "Tầm nhìn mở ra tiềm năng",
+    "category": "Đất Vàng",
+    "street": "Võ Nguyên Giáp",
+    "ward": "Phường Ngũ Hành Sơn",
+    "city": "Đà Nẵng",
+    "area": "2400",
+    "frontage": "40",
+    "price": "3xx tỷ",
+    "image": "/assets/land.jpg",
+    "created_at": "2026-11-04T00:00:00.000Z",
+    "demo": true,
+    "images": [
+      "/assets/land.jpg",
+      "/assets/hero.jpg",
+      "/assets/interior.jpg",
+      "/assets/villa.jpg"
+    ],
+    "description": "Một ý tưởng về không gian sống và sở hữu dành cho những nhu cầu khác biệt. Thông tin và hình ảnh trong hồ sơ này chỉ dùng để minh họa giao diện. Vui lòng liên hệ Sơn thẩm nhà để nhận danh sách bất động sản thực tế."
+  },
+  {
+    "id": "STN-005",
+    "title": "An yên trong từng đường nét",
+    "category": "Biệt Thự/Liền Kề",
+    "street": "Nguyễn Văn Hưởng",
+    "ward": "Phường An Khánh",
+    "city": "TP. Hồ Chí Minh",
+    "area": "420",
+    "frontage": "16",
+    "price": "6x tỷ",
+    "image": "/assets/villa.jpg",
+    "created_at": "2026-11-05T00:00:00.000Z",
+    "demo": true,
+    "images": [
+      "/assets/villa.jpg",
+      "/assets/hero.jpg",
+      "/assets/interior.jpg",
+      "/assets/townhouse.jpg"
+    ],
+    "description": "Một ý tưởng về không gian sống và sở hữu dành cho những nhu cầu khác biệt. Thông tin và hình ảnh trong hồ sơ này chỉ dùng để minh họa giao diện. Vui lòng liên hệ Sơn thẩm nhà để nhận danh sách bất động sản thực tế."
+  },
+  {
+    "id": "STN-006",
+    "title": "Một địa chỉ, vạn cảm hứng",
+    "category": "Thổ Cư/Nhà Phố",
+    "street": "Tràng Tiền",
+    "ward": "Phường Hoàn Kiếm",
+    "city": "Hà Nội",
+    "area": "180",
+    "frontage": "7",
+    "price": "9x tỷ",
+    "image": "/assets/interior.jpg",
+    "created_at": "2026-11-06T00:00:00.000Z",
+    "demo": true,
+    "images": [
+      "/assets/interior.jpg",
+      "/assets/hero.jpg",
+      "/assets/villa.jpg",
+      "/assets/townhouse.jpg"
+    ],
+    "description": "Một ý tưởng về không gian sống và sở hữu dành cho những nhu cầu khác biệt. Thông tin và hình ảnh trong hồ sơ này chỉ dùng để minh họa giao diện. Vui lòng liên hệ Sơn thẩm nhà để nhận danh sách bất động sản thực tế."
+  }
+]

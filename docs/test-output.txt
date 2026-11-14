@@ -1,0 +1,64 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> bdshanghieu@1.0.0 build
+> npm run check && npm test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> bdshanghieu@1.0.0 check
+> node scripts/check.js
+
+Source syntax, JSON configuration, template isolation and client-secret checks passed.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> bdshanghieu@1.0.0 test
+> node --test tests/*.test.js
+
+✔ Apps Script setup idempotent, không xóa dữ liệu, tạo đúng hai trigger (10.438222ms)
+✔ Apps Script lưu đầy đủ thông tin và thời gian, gửi đúng email admin (6.554772ms)
+✔ Gửi lại cùng requestId không tạo khách trùng hoặc email trùng (5.081465ms)
+✔ Cùng requestId khác nội dung bị từ chối (4.884958ms)
+✔ Email lỗi vẫn lưu khách, hàng đợi gửi lại được (5.426207ms)
+✔ Hết hạn ngạch email vẫn lưu và đợi lần sau (4.829604ms)
+✔ Chặn gửi dồn cùng số điện thoại (7.924566ms)
+✔ Chặn spreadsheet formula injection (4.532381ms)
+✔ Endpoint không secret/secret sai không đọc hoặc ghi CRM (9.716557ms)
+✔ Đọc content không bao giờ trả tab Leads (4.248842ms)
+✔ Ngày tạo tự điền một lần, chỉnh nội dung không đổi ngày (3.715316ms)
+✔ Client: pagination, recherche et quatre filtres fonctionnent (591.012824ms)
+✔ Client: hero auto 2s, pause et reprise (237.891737ms)
+✔ Client: galerie compacte, lightbox, ID, choix et fermeture (176.40112ms)
+✔ Client: pagination mobile/tablette/desktop et menu mobile (398.996349ms)
+✔ Client: blocage drag/contextmenu images sans bloquer les textes (60.121567ms)
+✔ Client: échec conserve les données et retry réutilise ID; succès efface le formulaire (59.689993ms)
+✔ Client: demo ne transmet aucune donnée (76.368978ms)
+✔ SSR trang chủ có sáu hồ sơ, HTML thẻ sản phẩm, canonical và no-script links (236.169015ms)
+✔ Tất cả trang BĐS có SSR, SEO riêng, 4 ảnh, thông số và lời gọi mới (186.530002ms)
+✔ URL cũ và slug sai chuyển 301; BĐS không tồn tại trả 404 (38.179164ms)
+✔ Sitemap chứa mọi URL chuẩn; robots mở khi kho thật (23.552494ms)
+✔ Demo không index, không gửi lead và không giả báo thành công (112.148263ms)
+✔ Production không chấp nhận cấu hình demo index hoặc secret ngắn (1.009622ms)
+✔ API lưu thành công, phản ánh email queued chứ không nhận đã gửi thư (32.227553ms)
+✔ Lỗi Google Sheets không được trả thành công (43.209124ms)
+✔ Rate limit được phản hồi 429 (17.184845ms)
+✔ Sai origin, thiếu consent, điện thoại sai, email sai và honeypot bị chặn (100.308099ms)
+✔ JSON hỏng và payload quá lớn có phản hồi an toàn (24.079626ms)
+✔ Turnstile xác thực token + action + hostname ở máy chủ (0.784172ms)
+✔ Turnstile lỗi không ghi vào CRM (12.976224ms)
+✔ XSS trong Sheet được escape ở HTML, JSON bootstrap và metadata (74.793658ms)
+✔ Không lộ endpoint, secret, dữ liệu khách hay source Apps Script (70.297274ms)
+✔ Kho thật bị lỗi trả 503, không fallback dữ liệu minh họa (44.198984ms)
+✔ Cache nội dung 60s coalesce request; không cache danh sách khách (1.602908ms)
+✔ Loại bài unpublished, trùng mã, thiếu ảnh; mới nhất ở đầu (2.046252ms)
+✔ Chuyển apex sang www đúng URL, không chuyển API POST (25.431554ms)
+✔ Gateway gửi secret trong body; lỗi/hỏng JSON upstream bị phát hiện (2.374257ms)
+✔ Fingerprint ổn định cho retry, không phụ thuộc requestId (0.572678ms)
+✔ CMS cập nhật lời dẫn sản phẩm, nhãn giá, ALT ảnh và keywords an toàn (128.414413ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3519.931499

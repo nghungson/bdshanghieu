@@ -1,0 +1,24 @@
+{
+  "name": "bdshanghieu",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BĐS Hàng Hiệu — website và Google Sheets CRM",
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env scripts/dev.js",
+    "start": "node --env-file-if-exists=.env scripts/dev.js",
+    "test": "node --test tests/*.test.js",
+    "check": "node scripts/check.js",
+    "build": "npm run check && npm test"
+  },
+  "dependencies": {
+    "cheerio": "1.2.0",
+    "express": "5.3.0"
+  },
+  "devDependencies": {
+    "jsdom": "31.0.1"
+  }
+}
