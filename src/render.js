@@ -11,6 +11,11 @@ export function renderPage({content,config,product,utility,status=200}){
  const $=load(product||utility?detail:home);const s=content.settings;
  $('[data-cms]').each((_,el)=>{const key=$(el).attr('data-cms');if(Object.hasOwn(s,key))$(el).text(s[key]);});
  $('[data-cms-image]').each((_,el)=>{const key=$(el).attr('data-cms-image');if(s[key])$(el).attr('src',imageURL(s[key]));if(s[key+'_alt'])$(el).attr('alt',s[key+'_alt']);});
+ if(!product&&!utility){
+  const slides=$('.hero-images img');
+  $('#slide-total').text(String(slides.length).padStart(2,'0'));
+  $('link[rel="preload"][as="image"]').attr('href',slides.first().attr('src'));
+ }
  $('script[src="/config.js"]').remove();$('script[src="/app.js"]').attr('src','/app.js');
  $('.footer-bottom a[href="/admin.html"]').attr('href','/chinh-sach-bao-mat').text('Quyền riêng tư');
  $('header a[aria-label="BĐS Hàng Hiệu trang chủ"]').attr('href','/');

@@ -20,3 +20,22 @@ test('Client: blocage drag/contextmenu images sans bloquer les textes',t=>{const
 function fill(q){q('[name=name]').value='Client Test';q('[name=phone]').value='0912345678';q('[name=needs]').value='Test STN-001';q('input[type=checkbox]').checked=true}
 test('Client: échec conserve les données et retry réutilise ID; succès efface le formulaire',async t=>{const calls=[];let n=0;const {q}=setup(t,{live:true,fetcher:async(u,o)=>{calls.push(JSON.parse(o.body));return {ok:++n>1,json:async()=>n===1?{ok:false,error:'CRM indisponible'}:{ok:true,message:'Đã lưu yêu cầu.',requestId:calls.at(-1).requestId}}}});fill(q);await q('#lead-form').onsubmit({preventDefault(){},target:q('#lead-form')});assert.equal(q('[name=name]').value,'Client Test');assert.match(q('#form-status').textContent,/CRM indisponible/);await q('#lead-form').onsubmit({preventDefault(){},target:q('#lead-form')});assert.equal(calls[0].requestId,calls[1].requestId);assert.equal(q('[name=name]').value,'');assert.match(q('#form-status').textContent,/Đã lưu yêu cầu/)});
 test('Client: demo ne transmet aucune donnée',async t=>{let n=0;const {q}=setup(t,{fetcher:async()=>n++});fill(q);await q('#lead-form').onsubmit({preventDefault(){},target:q('#lead-form')});assert.equal(n,0);assert(q('button[type=submit]').disabled)});
+test('Hero: sáu ảnh khác nhau chạy đủ vòng rồi trở lại ảnh đầu',t=>{
+ const {q,w,tick}=setup(t);
+ const slides=[...w.document.querySelectorAll('.hero-images img')];
+ assert.equal(slides.length,6);assert.equal(new Set(slides.map(x=>x.src)).size,6);
+ assert.equal(q('#slide-total').textContent,'06');
+ const first=q('.hero-images img.active').src;
+ for(let i=1;i<=6;i++){tick();assert.equal(q('#slide-num').textContent,String(i%6+1).padStart(2,'0'));assert.equal(w.document.querySelectorAll('.hero-images img.active').length,1);}
+ assert.equal(q('.hero-images img.active').src,first);
+});
+test('Hero: CRM đổi URL/ALT, preload theo ảnh đầu; không đổi ảnh tư vấn',()=>{
+ const content={...data,settings:{...data.settings,hero_image_01:'https://example.com/banner.webp',hero_image_01_alt:'Ảnh <mới>',hero_text_12:'99',image_05:'/assets/interior.jpg'}};
+ const dom=new JSDOM(renderPage({content,config:readConfig({DEMO_MODE:'true'})}));
+ const q=s=>dom.window.document.querySelector(s);
+ assert.equal(q('.hero-images img').getAttribute('src'),'https://example.com/banner.webp');
+ assert.equal(q('.hero-images img').alt,'Ảnh <mới>');
+ assert.equal(q('link[rel=preload][as=image]').getAttribute('href'),'https://example.com/banner.webp');
+ assert.equal(q('#slide-total').textContent,'06');
+ assert.equal(q('.service-photo img').getAttribute('src'),'/assets/interior.jpg');dom.window.close();
+});

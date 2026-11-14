@@ -104,5 +104,17 @@
   "image_03_alt": "Không gian nội thất sang trọng",
   "image_04_alt": "Biệt thự sân vườn",
   "image_05_alt": "Không gian sống tinh tế",
-  "image_06_alt": "BĐS Hàng Hiệu"
+  "image_06_alt": "BĐS Hàng Hiệu",
+  "hero_image_01": "/assets/hero-banner-01.webp",
+  "hero_image_01_alt": "Biệt thự hiện đại với sân vườn và hồ bơi",
+  "hero_image_02": "/assets/hero-banner-02.webp",
+  "hero_image_02_alt": "Khách sạn phong cách tân cổ điển",
+  "hero_image_03": "/assets/hero-banner-03.webp",
+  "hero_image_03_alt": "Mặt tiền biệt thự cổ giữa hàng cây",
+  "hero_image_04": "/assets/hero-banner-04.webp",
+  "hero_image_04_alt": "Villa hiện đại nhìn từ hồ bơi",
+  "hero_image_05": "/assets/hero-banner-05.webp",
+  "hero_image_05_alt": "Biệt thự cổ nhìn từ sân vườn",
+  "hero_image_06": "/assets/hero-banner-06.webp",
+  "hero_image_06_alt": "Dinh thự với cổng và vườn cảnh"
 }
