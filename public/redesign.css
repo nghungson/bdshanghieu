@@ -76,3 +76,8 @@ header,footer{background:#000!important}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}.ticker>div{animation:none!important;white-space:normal;width:auto}.ticker>div>span{white-space:normal}.hero-images img{transform:none}}
 /* Keep footer links clear of floating contact controls at every width. */
 .footer-bottom{padding-bottom:90px}
+
+/* Centered hotline notice: readable at every viewport and motion preference. */
+.ticker{padding:17px clamp(16px,4vw,64px);text-align:center}
+.ticker>div{animation:none!important;transform:none!important;width:100%;max-width:1200px;margin-inline:auto;white-space:normal;line-height:1.8;text-align:center}
+.ticker>div>span{white-space:normal;overflow-wrap:break-word}
