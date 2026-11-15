@@ -13,7 +13,7 @@ const icons={
 function unit(value,suffix){const s=String(value??'').trim();return /^\d+(?:[.,]\d+)?$/.test(s)?s+' '+suffix:s;}
 export function propertyFeaturesHTML(p){
  if(!['Thổ Cư/Nhà Phố','Hotel/Motel','Biệt Thự/Liền Kề'].includes(p.category))return '';
- const fields=[['price','Mức giá',p.price],['area','Diện tích',unit(p.area,'m²')],['legal','Pháp lý',p.legal_status],['frontage','Mặt tiền',unit(p.frontage,'m')],['road','Đường vào',unit(p.road_width,'m')],['floors','Số tầng',p.floors],['bedrooms','Số phòng ngủ',unit(p.bedrooms,'phòng')],['bathrooms','Số phòng tắm, WC',unit(p.bathrooms,'phòng')],['interior','Nội thất',p.interior]];
+ const fields=[['price','Mức giá',p.price],['area','Diện tích',unit(p.area,'m²')],['legal','Pháp lý',p.legal_status],['frontage','Mặt tiền',unit(p.frontage,'m')],['road','Đường vào',unit(p.road_width,'m')],['floors','Số tầng',p.floors],['bedrooms','Số phòng ngủ',unit(p.bedrooms,'phòng')],['bathrooms','Số phòng tắm, WC',unit(p.bathrooms,'phòng')]];
  const rows=fields;
  return `<details class="property-features" open><summary>Đặc điểm bất động sản<span class="features-chevron" aria-hidden="true"></span></summary><dl class="features-grid">${rows.map(([icon,label,value])=>`<div class="feature-item"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${icons[icon]}</svg><div><dt>${label}</dt><dd>${esc(String(value??'').trim())}</dd></div></div>`).join('')}</dl></details>`;
 }
