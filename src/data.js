@@ -15,7 +15,7 @@ export function normalizeContent(raw,{demo=false}={}){
  if(p.published!==undefined&&!['true','1'].includes(String(p.published).toLowerCase()))return false;
  seen.add(p.id);return true;
  }).map((p,i)=>{
- const out={};for(const key of ['id','title','category','street','ward','city','area','frontage','price','description','seo_title','seo_description','seo_keywords','og_title','og_description','og_image','created_at','tiktok_caption'])out[key]=String(p[key]??'').slice(0,key==='description'?20000:1000);
+ const out={};for(const key of ['id','title','category','street','ward','city','area','frontage','price','description','seo_title','seo_description','seo_keywords','og_title','og_description','og_image','created_at','tiktok_caption','legal_status','road_width','floors','bathrooms','interior'])out[key]=String(p[key]??'').slice(0,key==='description'?20000:1000);
  out.images=p.images.slice(0,24).map(imageURL);out.image=imageURL(p.image||p.images[0]);out.demo=demo;out._order=i;out.url=propertyPath(out);return out;
  }).sort((a,b)=>(Date.parse(b.created_at)||0)-(Date.parse(a.created_at)||0)||b._order-a._order).map(({_order,...p})=>p);
  const settings={};for(const [k,v] of Object.entries(raw.settings||{})){if(/^[a-zA-Z][a-zA-Z0-9_]{0,80}$/.test(k)&&typeof v==='string')settings[k]=v.slice(0,k==='privacy_text'?20000:5000);}
