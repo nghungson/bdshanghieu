@@ -1,7 +1,7 @@
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createContentStore,createGateway} from './store.js';
-import {readConfig,leadsReady} from './config.js';
+import {readConfig,leadsReady,leadConfigurationIssues} from './config.js';
 import {escapeHTML as esc,propertyPath} from './data.js';
 import {renderPage,errorHTML} from './render.js';
 import {validateLead,verifyTurnstile} from './leads.js';
@@ -16,7 +16,7 @@ export function createApp(express,{config=readConfig(),gateway=createGateway(con
   next();
  });
  app.use(express.json({limit:'16kb',strict:true}));
- app.get('/api/health',(_,res)=>res.json({ok:true,mode:config.demo?'demo':'live',leadsEnabled:leadsReady(config)}));
+ app.get('/api/health',(_,res)=>res.set('Cache-Control','no-store').json({ok:true,mode:config.demo?'demo':'live',leadsEnabled:leadsReady(config),configurationIssues:leadConfigurationIssues(config)}));
  app.get('/api/catalog',async(_,res)=>{try{const d=await store.get();res.set('Cache-Control','no-store').json(d);}catch{res.status(503).json({ok:false,error:'Kho hàng tạm thời chưa tải được.'});}});
  app.post('/api/leads',async(req,res)=>{
   res.set('Cache-Control','no-store');

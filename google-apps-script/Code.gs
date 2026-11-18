@@ -2,7 +2,7 @@
  * Run setup(), set API_SECRET in Script Properties, deploy Web App as owner.
  * Copy ContentDefaults.gs into a second Apps Script file before setup(). */
 const ADMIN_EMAIL='nghungson@gmail.com';
-const PROPERTY_HEADERS=['id','title','category','street','ward','city','area','frontage','price','image','image_1','image_2','image_3','image_4','description','seo_title','seo_description','seo_keywords','og_title','og_description','og_image','tiktok_caption','published','created_at'];
+const PROPERTY_HEADERS=['id','title','category','street','ward','city','area','frontage','price','image','image_1','image_2','image_3','image_4','description','seo_title','seo_description','seo_keywords','og_title','og_description','og_image','tiktok_caption','published','created_at','legal_status','road_width','floors','bathrooms','interior'];
 const LEAD_HEADERS=['request_id','created_at','name','phone','email','intent','budget','needs','consent','email_status','fingerprint','email_attempts','email_last_error'];
 function setup(){
  const ss=SpreadsheetApp.getActiveSpreadsheet();PropertiesService.getScriptProperties().setProperty('SHEET_ID',ss.getId());
@@ -34,7 +34,7 @@ function safeCell(v){return /^[=+\-@\t\r\n]/.test(String(v))?"'"+v:v;}
 function validateLead(p){
  if(!p||p.consent!==true)throw Error('INVALID_INPUT');
  const out={request_id:text(p.requestId,80),name:text(p.name,100),phone:text(p.phone,30),email:text(p.email||'',200),intent:text(p.intent,100),budget:text(p.budget,100),needs:text(p.needs,3000),fingerprint:text(p.fingerprint,64)};
- if(!/^[0-9a-f-]{36}$/i.test(out.request_id)||out.name.length<2||out.needs.length<3||!/^\+?\d{9,15}$/.test(out.phone)||! /^[0-9a-f]{64}$/.test(out.fingerprint))throw Error('INVALID_INPUT');
+ if(!/^[0-9a-f-]{36}$/i.test(out.request_id)||out.name.length<2||out.needs.length<3||!/^0[0-9]{9}$/.test(out.phone)||! /^[0-9a-f]{64}$/.test(out.fingerprint))throw Error('INVALID_INPUT');
  return out;
 }
 function updateCell(sheet,headers,row,key,value){const col=headers.indexOf(key)+1;if(!col)throw Error('RUN_SETUP');sheet.getRange(row,col).setValue(value);}

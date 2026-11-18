@@ -39,3 +39,19 @@ test('Chuyển apex sang www đúng URL, không chuyển API POST',async t=>{con
 test('Gateway gửi secret trong body; lỗi/hỏng JSON upstream bị phát hiện',async()=>{let body;const gw=createGateway(config(),async(url,opts)=>{body=JSON.parse(opts.body);return {ok:true,text:async()=>JSON.stringify(raw)}});await gw.content();assert.equal(body.action,'content');assert.equal(body.secret,config().secret);await assert.rejects(createGateway(config(),async()=>({ok:true,text:async()=>'<html>Login</html>'})).content());});
 test('Fingerprint ổn định cho retry, không phụ thuộc requestId',()=>{const a=lead(),b={...a,requestId:randomUUID()};assert.equal(validateLead(a).fingerprint,validateLead(b).fingerprint);});
 test('CMS cập nhật lời dẫn sản phẩm, nhãn giá, ALT ảnh và keywords an toàn',async t=>{const changed={...raw,settings:{...defaultSettings,product_price_label:'Giá mới:',product_contact_note:'Tư vấn riêng <script>test</script>',image_01_alt:'Logo thử',seo_keywords:'keyword thử'}};const base=await server(t,{gateway:{content:async()=>changed}});const $=load(await(await fetch(base+propertyPath(demo[0]))).text());assert.equal($('.price-caption').text(),'Giá mới:');assert.match($('.product-summary p').text(),/Tư vấn riêng <script>test<\/script>/);assert.equal($('.product-summary script').length,0);assert.equal($('header img').attr('alt'),'Logo thử');assert.equal($('meta[name=keywords]').attr('content'),'keyword thử')});
+
+test('Điện thoại: đúng 10 chữ số bắt đầu bằng 0, API từ chối định dạng khác',async t=>{
+ const base=await server(t);
+ for(const phone of ['0912345678','0123456789'])assert.equal((await post(base,{...lead(),phone})).status,200);
+ for(const phone of ['9123456789','091234567','09123456789','+84912345678','091 234 5678','091-234-5678','0abcdefghi'])assert.equal((await post(base,{...lead(),phone})).status,400,phone);
+ const $=load(await(await fetch(base)).text());
+ assert.equal($('input[name=phone]').attr('pattern'),'0[0-9]{9}');
+ assert.equal($('input[name=phone]').attr('maxlength'),'10');
+});
+test('Health chỉ nêu cấu hình thiếu, không trả giá trị secret',async t=>{
+ const c=config();c.privacyApproved=false;c.requireTurnstile=true;c.turnstileSiteKey='';c.turnstileSecret='';
+ const base=await server(t,{config:c}),r=await fetch(base+'/api/health'),data=await r.json();
+ assert.equal(data.leadsEnabled,false);
+ assert.deepEqual(data.configurationIssues,['PRIVACY_APPROVED must be true','TURNSTILE_SITE_KEY is missing','TURNSTILE_SECRET_KEY is missing']);
+ assert(!JSON.stringify(data).includes(c.secret));assert.equal(r.headers.get('cache-control'),'no-store');
+});

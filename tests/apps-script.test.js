@@ -22,3 +22,10 @@ test('Chặn spreadsheet formula injection',()=>{const h=harness();h.ctx.saveLea
 test('Endpoint không secret/secret sai không đọc hoặc ghi CRM',()=>{const h=harness();const response=h.ctx.doPost({postData:{contents:JSON.stringify({action:'content',secret:'wrong'})}});assert.equal(JSON.parse(response.value).code,'UNAUTHORIZED');assert.equal(JSON.parse(h.ctx.doGet().value).code,'POST_REQUIRED');});
 test('Đọc content không bao giờ trả tab Leads',()=>{const h=harness();h.ctx.saveLead(lead());const r=h.ctx.readContent();assert.equal(r.ok,true);assert(!Object.hasOwn(r,'leads'));assert(!JSON.stringify(r).includes('Khách test'));});
 test('Ngày tạo tự điền một lần, chỉnh nội dung không đổi ngày',()=>{const h=harness(),s=h.sheets.get('Properties');s.appendRow(['STN-NEW','New']);const e={range:s.getRange(2,1)};h.ctx.stampProperty(e);const first=h.ctx.table(s).rows[0].data.created_at;assert(first);h.ctx.stampProperty(e);assert.equal(h.ctx.table(s).rows[0].data.created_at,first);});
+
+test('Apps Script từ chối số thiếu/thừa chữ số, +84 và số không bắt đầu bằng 0',()=>{
+ for(const phone of ['9123456789','091234567','09123456789','+84912345678','091 234 5678']){
+  const h=harness();assert.throws(()=>h.ctx.saveLead({...lead(),phone}),/INVALID_INPUT/);
+  assert.equal(h.sheets.get('Leads').getLastRow(),1);assert.equal(h.mail.sent.length,0);
+ }
+});

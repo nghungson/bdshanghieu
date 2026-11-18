@@ -26,10 +26,15 @@ window.onTurnstileLoad=()=>{if(bootstrap.turnstileSiteKey&&$('#turnstile-widget'
 if(window.turnstile)window.onTurnstileLoad();
 if($('#lead-form')){
  let pendingId='',pendingPayload='';
+ const phoneInput=$('#lead-form input[name=phone]');
+ const checkPhone=()=>phoneInput.setCustomValidity(/^0[0-9]{9}$/.test(phoneInput.value)?'':'Số điện thoại phải gồm đúng 10 chữ số và bắt đầu bằng số 0.');
+ phoneInput.addEventListener('input',checkPhone);
+ phoneInput.addEventListener('invalid',checkPhone);
  $('#lead-form').onsubmit=async e=>{
   e.preventDefault();const form=e.target,status=$('#form-status'),button=form.querySelector('button[type=submit]');
   if(!bootstrap.leadsEnabled){status.textContent='Biểu mẫu chưa hoạt động. Vui lòng gọi Hotline.';return;}
   const data=Object.fromEntries(new FormData(form));delete data['cf-turnstile-response'];data.consent=form.querySelector('input[type=checkbox]').checked;
+  checkPhone();if(!form.reportValidity())return;
   const payload=JSON.stringify(data);if(payload!==pendingPayload){pendingId=crypto.randomUUID();pendingPayload=payload;}
   data.requestId=pendingId;data.turnstileToken=turnstileWidget!==null?window.turnstile.getResponse(turnstileWidget):'';
   button.disabled=true;status.textContent='Đang tiếp nhận yêu cầu…';

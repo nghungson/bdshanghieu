@@ -1,0 +1,10 @@
+1. Giải nén. Upload các thư mục public, src, templates, google-apps-script, tests vào THƯ MỤC GỐC repository bdshanghieu, rồi Commit changes.
+2. Chờ Vercel deployment mới Ready. Mở https://www.bdshanghieu.net/api/health và xem configurationIssues.
+- PRIVACY_APPROVED must be true: sửa biến Production thành true sau khi đã hoàn thiện nội dung quyền riêng tư.
+- DEMO_MODE must be false: sửa biến Production thành false.
+- ... is missing: bổ sung biến được nêu đúng tên và đúng giá trị trong Production.
+Lưu biến rồi Redeploy bản mới nhất. configurationIssues phải là [] và leadsEnabled phải là true.
+3. Apps Script: thay nội dung Code.gs bằng google-apps-script/Code.gs trong gói; lưu. Không cần chạy lại setup.
+Deploy > Manage deployments > chọn Web app hiện tại > Edit (bút chì) > Version: New version > Deploy. Giữ deployment hiện tại để URL /exec không đổi.
+4. Mở website chính thức, Ctrl+F5. Nhập số đúng 10 chữ số, bắt đầu 0 (không +84, dấu cách hay dấu gạch). Gửi thử và kiểm tra Leads/email.
+Bản sửa không tự thay đổi biến môi trường Vercel. Health chỉ hiển thị tên cấu hình thiếu, không hiển thị giá trị khóa bí mật.

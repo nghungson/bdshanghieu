@@ -18,4 +18,14 @@ export function readConfig(env=process.env){
   privacyApproved:env.PRIVACY_APPROVED==='true'
  };
 }
-export function leadsReady(c){return !c.demo&&c.privacyApproved&&!!c.endpoint&&!!c.secret&&(!c.requireTurnstile||!!(c.turnstileSiteKey&&c.turnstileSecret));}
+export function leadConfigurationIssues(c){
+ const issues=[];
+ if(c.demo)issues.push('DEMO_MODE must be false');
+ if(!c.privacyApproved)issues.push('PRIVACY_APPROVED must be true');
+ if(!c.endpoint)issues.push('GOOGLE_APPS_SCRIPT_URL is missing');
+ if(!c.secret)issues.push('GOOGLE_APPS_SCRIPT_SECRET is missing');
+ if(c.requireTurnstile&&!c.turnstileSiteKey)issues.push('TURNSTILE_SITE_KEY is missing');
+ if(c.requireTurnstile&&!c.turnstileSecret)issues.push('TURNSTILE_SECRET_KEY is missing');
+ return issues;
+}
+export function leadsReady(c){return leadConfigurationIssues(c).length===0;}
