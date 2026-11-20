@@ -138,3 +138,13 @@ header,footer{background:#000!important}
  .product-page .feature-item dd{font-size:16px}
  .product-page .product-content h2{font-size:24px}
 }
+
+/* Footer social icons: URLs managed in Google Sheets > Settings. */
+.footer-top .footer-social{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex:0 0 auto;margin-left:20px}
+.footer-top .footer-social-link{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;flex:0 0 56px;border-radius:12px;overflow:hidden;background:#000;transition:transform .2s ease,box-shadow .2s ease}
+.footer-top .footer-social-link img{display:block;width:56px;height:56px;max-width:100%;object-fit:contain}
+.footer-top a.footer-social-link:hover{transform:translateY(-3px);box-shadow:0 4px 16px #d9ad3826}
+.footer-top a.footer-social-link:focus-visible{outline:2px solid #e8bd4e;outline-offset:4px}
+.footer-top .footer-social-link.is-unconfigured{cursor:default}
+@media(max-width:760px){.footer-top .footer-social{margin-left:0;justify-content:flex-start;gap:10px}}
+@media(prefers-reduced-motion:reduce){.footer-top .footer-social-link{transition:none}.footer-top a.footer-social-link:hover{transform:none}}

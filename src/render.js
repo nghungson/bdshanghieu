@@ -3,6 +3,7 @@ import {load} from 'cheerio';
 import {escapeHTML as esc,imageURL,propertyPath,safeJSON} from './data.js';
 import {productHTML} from './product-view.js';
 import {leadsReady} from './config.js';
+import {socialLinksHTML} from './social-links.js';
 const home=readFileSync(new URL('../templates/index.html',import.meta.url),'utf8');
 const detail=readFileSync(new URL('../templates/product.html',import.meta.url),'utf8');
 export function cardHTML(p){return `<a class="property" href="${esc(propertyPath(p))}" aria-label="Xem ${esc(p.title)}"><div class="card-photo"><img src="${esc(imageURL(p.image))}" alt="${esc(p.title)}" loading="lazy" draggable="false"><span class="badge">${p.demo?'HỒ SƠ MINH HỌA':'TUYỂN CHỌN'}</span><span class="card-open">→</span></div><div class="card-body"><div class="card-meta"><span>${esc(p.category)}</span><span>${esc(p.id)}</span></div><h3>${esc(p.title)}</h3><p class="address">${esc(p.street)} · ${esc(p.city)}</p><div class="card-bottom"><span>${esc(p.area)} m² · MT ${esc(p.frontage)} m</span><strong>${esc(p.price)}</strong></div></div></a>`;}
@@ -18,6 +19,7 @@ export function renderPage({content,config,product,utility,status=200}){
  }
  $('script[src="/config.js"]').remove();$('script[src="/app.js"]').attr('src','/app.js');
  $('.footer-bottom a[href="/admin.html"]').attr('href','/chinh-sach-bao-mat').text('Quyền riêng tư');
+ $('.footer-top > a[href^="tel:"]').replaceWith(socialLinksHTML(s));
  $('header a[aria-label="BĐS Hàng Hiệu trang chủ"]').attr('href','/');
  $('a[data-cat]').each((_,el)=>$(el).attr('href','/?category='+encodeURIComponent($(el).attr('data-cat'))+'#collection'));
  if(product){$('#product-main').html(productHTML(product,content.properties,s));}
